@@ -51,7 +51,7 @@ export default function HomePage() {
               <div className="w-12 h-12 rounded-full bg-[#F4F1DE] flex items-center justify-center text-[#B55136] mb-6">
                 <PenTool size={24} />
               </div>
-              <h2 className="text-2xl font-bold mb-4 text-[#2C2520]">Pointed & Brush Pen Calligraphy</h2>
+              <h2 className="text-2xl font-bold mb-4 text-[#2C2520]">Nib & Ink /Brush Pen Calligraphy</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
                 A gallery of traditional scripts, hand-drawn flourishes, and expressive rhythm captured through fine nibs.
               </p>
@@ -67,7 +67,7 @@ export default function HomePage() {
       {/* FOOTER SECTION */}
       <footer className="border-t border-[#E07A5F]/20 bg-[#F4F1DE]/40 py-12 px-6 text-center">
         <div className="max-w-md mx-auto flex flex-col items-center">
-          <h3 className="text-lg font-bold text-[#2C2520] mb-4 tracking-wider">CONNECT WITH THE CORE</h3>
+          <h3 className="text-lg font-bold text-[#2C2520] mb-4 tracking-wider">CONNECT WITH Me</h3>
           
           <div className="flex justify-center gap-8 mb-6">
             {/* Custom Instagram SVG */}
@@ -104,7 +104,7 @@ export default function HomePage() {
             />
           </div>
 
-          <p className="text-xs text-gray-400 font-mono">© 2026 cyaxares_core. All rights reserved.</p>
+          <p className="text-xs text-gray-400 font-mono">© 2026 ahsmr. All rights reserved.</p>
         </div>
       </footer>
     </div>
