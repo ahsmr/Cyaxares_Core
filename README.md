@@ -1,16 +1,34 @@
-# React + Vite
+# Cyaxares Core Portfolio 🌌
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Cyaxares Core**, a digital oasis where the absolute precision of software engineering meets the fluid elegance of the ink stroke. This repository contains the source code for my personal portfolio platform, designed to exhibit an explicit catalog of high-performance technical architecture alongside fine manuscript calligraphy.
 
-Currently, two official plugins are available:
+## ✨ Highlights & Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Dual-Domain Focus**: Balanced showcase split cleanly between complex full-stack architectural engineering and traditional brush/pointed pen calligraphy scripts.
+- **Micro-Interactions**: Features custom, organic layout responses including an active hover-jiggle micro-interaction on primary profile assets to maximize user engagement without UI bloat.
+- **Responsive Layout**: Designed with a polished, minimalist editorial design aesthetic built explicitly using custom CSS components and a rich, muted terracotta-and-cream color palette.
+- **Optimized Assets**: Structural layout handling ensuring clean profile image ratios across all device viewports while preserving native visual dimensions.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: [React](https://react.dev/) (with Vite)
+- **Routing**: [React Router DOM](https://reactrouter.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Getting Started
+
+To spin up a local instance of this portfolio platform for development, follow the setup steps below:
+
+### Prerequisites
+
+Ensure you have [Node.js](https://nodejs.org/) installed on your machine (v18.x or higher recommended).
+
+### Installation & Local Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone [https://github.com/ahsmr/Cyaxares_Core.git](https://github.com/ahsmr/Cyaxares_Core.git)
+   cd Cyaxares_Core
