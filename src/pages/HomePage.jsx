@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Code, PenTool } from 'lucide-react';
-import signatureImg from '../assets/Signature.png'; // Make sure the image is in your assets folder!
+import signatureImg from '../assets/Signature.png'; // Signature imported back for the footer!
 
 export default function HomePage() {
   return (
@@ -10,14 +10,16 @@ export default function HomePage() {
         <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center">
           
-          {/* Your Custom Signature as the Hero Logo */}
-                <img 
-                src={signatureImg} 
-                alt="Cyaxares Core" 
-                className="h-40 md:h-56 w-auto object-contain invert brightness-200 scale-150 md:scale-125 my-8 drop-shadow-sm select-none"
-                />
+          {/* Central Profile Photo Container with your Jiggle Hover effect */}
+          <div className="my-8">
+            <img 
+              src="/favicon.png"
+              alt="Cyaxares Core"
+              className="w-24 h-24 md:w-45 md:h-45 object-contain rounded-full shadow-lg border-2 border-[#FFFDF9]/20 hover:animate-jiggle cursor-pointer"
+            />
+          </div>
           
-          <p className="text-xl md:text-2xl max-w-2xl mx-auto font-light opacity-90 leading-relaxed">
+          <p className="text-xl md:text-2xl max-w-2xl mx-auto font-light opacity-90 leading-relaxed mt-4">
             A digital oasis where the precision of logic meets the fluid elegance of the ink stroke.
           </p>
         </div>
@@ -88,12 +90,17 @@ export default function HomePage() {
             </a>
           </div>
 
-          {/* Signature Sign-off Stamp */}
-          <div className="mb-4 opacity-40 hover:opacity-80 transition-opacity duration-300">
+          {/* Reinstated Signature & Accent Layout Area */}
+          <div className="mb-4 opacity-40 hover:opacity-80 transition-opacity duration-300 flex items-center justify-center gap-2">
             <img 
               src={signatureImg} 
               alt="cyaxares signature" 
-              className="h-14 mx-auto mix-blend-multiply select-none" 
+              className="h-14 mix-blend-multiply select-none" 
+            />
+            <img 
+              src="/favicon.png" 
+              alt="" 
+              className="w-4 h-4 object-contain opacity-60 grayscale hover:grayscale-0 transition-all" 
             />
           </div>
 
