@@ -1,71 +1,76 @@
 import { useState } from 'react';
 
+// Helper function to dynamically resolve paths within src/assets
+const getAssetUrl = (name) => {
+  return new URL(`../assets/${name}`, import.meta.url).href;
+};
+
 const GALLERY_ITEMS = [
   { 
     title: "Poem By William Shakespeare", 
     script: "Copperplate / May 23 2026", 
     category: "oblique", 
-    imgSrc: "/src/assets/23_05_2026.png" 
+    imgSrc: getAssetUrl("23_05_2026.png") 
   },
   { 
     title: "Poem By William Shakespeare", 
     script: "Copperplate / May 21 2026", 
     category: "oblique", 
-    imgSrc: "/src/assets/21_05_2026.png" 
+    imgSrc: getAssetUrl("21_05_2026.png") 
   },
   { 
     title: "Poem By William Blake", 
     script: "Copperplate / June 27 2026", 
     category: "oblique", 
-    imgSrc: "/src/assets/27_06_2026.png" 
+    imgSrc: getAssetUrl("27_06_2026.png") 
   },
   { 
     title: "Poem By Pablo Neruda", 
     script: "Copperplate / May 19 2026", 
     category: "oblique", 
-    imgSrc: "/src/assets/19_05_2026.png" 
+    imgSrc: getAssetUrl("19_05_2026.png") 
   },
   { 
     title: "My first Copperplate Calligraphy with Oblique pen and Ink", 
     script: "Copperplate / May 18 2026", 
     category: "oblique", 
-    imgSrc: "/src/assets/18_05_2026.png" 
+    imgSrc: getAssetUrl("18_05_2026.png") 
   },
   { 
     title: "Script with Brush Pen", 
     script: "Brush Pen / April 19 2026", 
     category: "brush",
-    imgSrc: "/src/assets/brush1.png" 
+    imgSrc: getAssetUrl("brush1.png") 
   },
-   { 
+  { 
     title: "My first calligraphy with brush pen", 
     script: "Brush Pen / April 10 2026", 
     category: "brush",
-    imgSrc: "/src/assets/brush2.png" 
+    imgSrc: getAssetUrl("brush2.png") 
   },
   { 
     title: "My first Calligraphy with pen and nib", 
     script: "Brush Pen / May 1 2026", 
     category: "straight",
-    imgSrc: "/src/assets/First.png" 
+    imgSrc: getAssetUrl("First.png") 
   },
   { 
     title: "Poem by Rumi", 
     script: "Brush Pen / May 2 2026", 
     category: "straight",
-    imgSrc: "/src/assets/Rumi.png" 
+    imgSrc: getAssetUrl("Rumi.png") 
   },
   { 
     title: "Poem by Hafez", 
     script: "Brush Pen / May 3 2026", 
     category: "straight",
-    imgSrc: "/src/assets/Hafez.png" 
+    imgSrc: getAssetUrl("Hafez.png") 
   },
   {
     title: "Signature",
     script: "Traditional Broad Nib / Blackletter",
-    category: "oblique", // Third category added here
-    imgSrc: "/src/assets/Signature.png" 
+    category: "oblique", 
+    imgSrc: getAssetUrl("Signature.png") 
   }
 ];
 
@@ -108,7 +113,7 @@ export default function CalligraphyPage() {
         {filteredItems.map((item, index) => (
           <div 
             key={index} 
-            onClick={() => setSelectedImage(item.imgSrc)}
+            onClick={() => setSelectedImage(item.imgSrc)} // Passes the resolved URL string
             className="break-inside-avoid bg-[#FFFDF9] border border-[#E07A5F]/10 rounded-xl overflow-hidden shadow-sm hover:shadow-md cursor-pointer transition-all duration-300 group flex flex-col"
           >
             <div className="bg-[#F4F1DE] w-full overflow-hidden">
