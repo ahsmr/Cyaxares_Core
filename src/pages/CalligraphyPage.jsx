@@ -21,9 +21,9 @@ export default function CalligraphyPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const CLOUD_NAME = 'lh6cbel6'; 
-  const CLOUDINARY_LIST_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/portfolio_gallery.json`;
-
+  const CLOUD_NAME = 'lh6cbel6'; //Might be a better idea to move this to an environment variable for security and flexibility
+  const CLOUDINARY_LIST_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/portfolio_gallery.json`; // Portfolio_gallery has to                                   
+                                                                                                            // be one of the tags
   useEffect(() => {
     fetch(CLOUDINARY_LIST_URL)
       .then((res) => {
