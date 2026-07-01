@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 // 1. Import your local signature assets here. 
 // Adjust the paths relative to your components folder as needed.
-import signatureImg1 from '../assets/signature.png'; 
+import signatureImg1 from '../assets/Signature.png'; 
 
 // 2. Define your local signature data structurally matching your Cloudinary output
 const LOCAL_SIGNATURES = [
