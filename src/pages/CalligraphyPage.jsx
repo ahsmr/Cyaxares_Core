@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 // 1. Import your local signature assets here. 
-// Adjust the paths relative to your components folder as needed.
 import signatureImg1 from '../assets/Signature.png'; 
 
 // 2. Define your local signature data structurally matching your Cloudinary output
@@ -15,18 +14,22 @@ const LOCAL_SIGNATURES = [
   }
 ];
 
+const ITEMS_PER_PAGE = 6;
+
 export default function CalligraphyPage() {
   const [galleryItems, setGalleryItems] = useState([]);
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(true);
+  
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Loaded from your .env file via Vite
   const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME; 
   const CLOUDINARY_LIST_URL = import.meta.env.VITE_CLOUDINARY_LIST_URL; 
 
   useEffect(() => {
-    // Safety check in case environment variables are missing
     if (!CLOUDINARY_LIST_URL) {
       console.error("Cloudinary List URL is not defined in environment variables.");
       setGalleryItems(LOCAL_SIGNATURES);
@@ -40,7 +43,6 @@ export default function CalligraphyPage() {
         return res.json();
       })
       .then((data) => {
-        // If Cloudinary fails or is empty, still keep the local signatures visible
         if (!data.resources || data.resources.length === 0) {
           setGalleryItems(LOCAL_SIGNATURES);
           setLoading(false);
@@ -78,21 +80,31 @@ export default function CalligraphyPage() {
           };
         });
 
-        // 3. Combine Cloudinary items with your Local Signature items here
         setGalleryItems([...formattedCloudinaryItems, ...LOCAL_SIGNATURES]);
         setLoading(false);
       })
       .catch((err) => {
         console.error("Fetch pipeline exception:", err);
-        // Fallback to local signatures if the network fetch breaks completely
         setGalleryItems(LOCAL_SIGNATURES);
         setLoading(false);
       });
   }, [CLOUD_NAME, CLOUDINARY_LIST_URL]);
 
+  // Handle filter switching and reset pagination to page 1
+  const handleFilterChange = (category) => {
+    setActiveFilter(category);
+    setCurrentPage(1);
+  };
+
+  // 1. Filter items first
   const filteredItems = activeFilter === 'all' 
     ? galleryItems 
     : galleryItems.filter(item => item.category === activeFilter);
+
+  // 2. Calculate Pagination bounds
+  const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const paginatedItems = filteredItems.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-16 min-h-[80vh]">
@@ -108,7 +120,7 @@ export default function CalligraphyPage() {
         {['all', 'oblique', 'brush', 'straight', 'signature'].map((cat) => (
           <button 
             key={cat}
-            onClick={() => setActiveFilter(cat)}
+            onClick={() => handleFilterChange(cat)}
             className={`px-4 py-2 rounded-lg text-xs font-mono transition-all uppercase tracking-wider ${
               activeFilter === cat 
                 ? 'bg-[#E07A5F] text-[#FFFDF9] shadow-sm' 
@@ -136,10 +148,10 @@ export default function CalligraphyPage() {
         </div>
       )}
 
-      {/* Masonry Grid */}
+      {/* Masonry Grid displaying Paginated Items */}
       {!loading && (
         <div className="columns-1 sm:columns-2 md:columns-3 gap-6 space-y-6 [column-fill:_balance]">
-          {filteredItems.map((item, index) => (
+          {paginatedItems.map((item, index) => (
             <div 
               key={index} 
               onClick={() => setSelectedImage(item.rawSrc)} 
@@ -164,6 +176,41 @@ export default function CalligraphyPage() {
       
       {!loading && filteredItems.length === 0 && (
         <p className="text-center text-gray-400 font-mono text-sm py-12">No scripts found in this category yet.</p>
+      )}
+
+      {/* Pagination Controls */}
+      {!loading && totalPages > 1 && (
+        <div className="flex items-center justify-center space-x-2 mt-12 pt-6 border-t border-[#E07A5F]/10">
+          <button
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="px-3 py-2 rounded-lg text-xs font-mono transition-all bg-[#F4F1DE] text-[#2C2520] hover:bg-[#E07A5F]/10 disabled:opacity-45 disabled:hover:bg-[#F4F1DE]"
+          >
+            Previous
+          </button>
+          
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => setCurrentPage(pageNum)}
+              className={`w-8 h-8 rounded-lg text-xs font-mono transition-all ${
+                currentPage === pageNum
+                  ? 'bg-[#B55136] text-[#FFFDF9] font-bold shadow-sm'
+                  : 'bg-[#F4F1DE] text-[#2C2520] hover:bg-[#E07A5F]/10'
+              }`}
+            >
+              {pageNum}
+            </button>
+          ))}
+
+          <button
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="px-3 py-2 rounded-lg text-xs font-mono transition-all bg-[#F4F1DE] text-[#2C2520] hover:bg-[#E07A5F]/10 disabled:opacity-45 disabled:hover:bg-[#F4F1DE]"
+          >
+            Next
+          </button>
+        </div>
       )}
 
       {/* Lightbox Overlay */}
