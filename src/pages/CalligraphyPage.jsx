@@ -21,10 +21,19 @@ export default function CalligraphyPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const CLOUD_NAME = 'lh6cbel6'; //Might be a better idea to move this to an environment variable for security and flexibility
-  const CLOUDINARY_LIST_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/list/portfolio_gallery.json`; // Portfolio_gallery has to                                   
-                                                                                                            // be one of the tags
+  // Loaded from your .env file via Vite
+  const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME; 
+  const CLOUDINARY_LIST_URL = import.meta.env.VITE_CLOUDINARY_LIST_URL; 
+
   useEffect(() => {
+    // Safety check in case environment variables are missing
+    if (!CLOUDINARY_LIST_URL) {
+      console.error("Cloudinary List URL is not defined in environment variables.");
+      setGalleryItems(LOCAL_SIGNATURES);
+      setLoading(false);
+      return;
+    }
+
     fetch(CLOUDINARY_LIST_URL)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
@@ -79,7 +88,7 @@ export default function CalligraphyPage() {
         setGalleryItems(LOCAL_SIGNATURES);
         setLoading(false);
       });
-  }, []);
+  }, [CLOUD_NAME, CLOUDINARY_LIST_URL]);
 
   const filteredItems = activeFilter === 'all' 
     ? galleryItems 
