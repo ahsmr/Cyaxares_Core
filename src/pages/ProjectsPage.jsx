@@ -21,6 +21,12 @@ const MY_PROJECTS = [
     tags: ["HTML", "CSS", "Responsive Design"," Bootstrap"],
     github: "https://github.com/ahsmr/VpnShop",
     live: "https://ahsmr.github.io/VpnShop/"
+  },
+  {
+    title: "Interactive System Theory & Control Design Simulator",
+    description: "My Senior Design Project: An application simulator for control systems, allowing users to visualize and interact with system responses and control strategies in real-time.",
+    tags: ["React", "TypeScript"," System Threory"," Control Design","Under Development"],
+    github: "https://github.com/ahsmr/Cyax"
   }
 ];
 export default function ProjectsPage() {
